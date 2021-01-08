@@ -20,6 +20,7 @@ struct NewsComponents {
         let srcView = UIScrollView()
         srcView.translatesAutoresizingMaskIntoConstraints = false
         srcView.autoresizingMask = .flexibleHeight
+        srcView.showsVerticalScrollIndicator = false
         return srcView
     }()
     
