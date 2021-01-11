@@ -59,7 +59,7 @@ struct ShippingViewConponents {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .darkGray
         return collectionView
     }()
     

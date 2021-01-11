@@ -48,7 +48,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
     
     lazy var imageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "comtro")
+        image.image = UIImage(named: "image")
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
         image.backgroundColor = .brown
@@ -70,7 +70,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
         s.distribution = .fill
         return s
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setUpFoodCollectionViewCell()

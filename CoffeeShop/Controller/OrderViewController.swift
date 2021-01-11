@@ -18,6 +18,7 @@ class OrderViewController: UIViewController {
         shippingView.SetShippingView(view: view)
         shippingView.menuBarCollection.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         shippingView.horizontalCollectionMenuView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        shippingView.horizontalCollectionMenuView.register(MenuCollectionViewCell2.self, forCellWithReuseIdentifier: "cell2")
         shippingView.menuBarCollection.dataSource = self
         shippingView.menuBarCollection.delegate = self
         shippingView.horizontalCollectionMenuView.dataSource = self
@@ -34,24 +35,32 @@ extension OrderViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView  == self.shippingView.menuBarCollection {
             return 4
-        } else if collectionView  == self.shippingView.horizontalCollectionMenuView {
-            return 4
         } else {
-            return 5
+            return 4
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MenuCollectionViewCell
         
         if collectionView  == self.shippingView.menuBarCollection {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MenuCollectionViewCell
             cell.label1.text = "\(textArray[indexPath.row])"
+            cell.contentHeightAnchor?.constant = 100
+            cell.content.layoutIfNeeded()
             cell.setUpcollectionViewCell()
+            return cell
         }  else {
-            cell.setUpHorizontalCollectionViewCell()
-            cell.backgroundColor = .white
+            if indexPath.item == 0 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MenuCollectionViewCell
+                cell.setUpHorizontalCollectionViewCell()
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! MenuCollectionViewCell2
+                cell.components.label.text = "Coffee Ngon"
+                cell.setUpHorizontalCollectionViewCell2()
+                return cell
+            }
         }
-        return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let x = CGFloat(indexPath.item) * shippingView.menuContentView.frame.width / 4

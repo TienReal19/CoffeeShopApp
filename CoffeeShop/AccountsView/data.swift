@@ -8,7 +8,7 @@
 import Foundation
 
 struct Data {
-    let imageArray = ["uudai","uudai","uudai","uudai","uudai","uudai"]
+    let imageArray = ["image","image","image","image","image","image"]
     let contentArray = [
         "The Coffee House Rewards",
         "Thông tin tài khoản",
