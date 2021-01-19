@@ -19,6 +19,7 @@ class OrderViewController: UIViewController {
         shippingView.menuBarCollection.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         shippingView.horizontalCollectionMenuView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         shippingView.horizontalCollectionMenuView.register(MenuCollectionViewCell2.self, forCellWithReuseIdentifier: "cell2")
+        shippingView.horizontalCollectionMenuView.register(MenuCollectionViewCell3.self, forCellWithReuseIdentifier: "cell3")
         shippingView.menuBarCollection.dataSource = self
         shippingView.menuBarCollection.delegate = self
         shippingView.horizontalCollectionMenuView.dataSource = self
@@ -54,10 +55,15 @@ extension OrderViewController: UICollectionViewDelegate, UICollectionViewDataSou
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MenuCollectionViewCell
                 cell.setUpHorizontalCollectionViewCell()
                 return cell
-            } else {
+            } else if indexPath.item == 1 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! MenuCollectionViewCell2
-                cell.components.label.text = "Coffee Ngon"
+                cell.components.label.text = "Coffee  ngon"
                 cell.setUpHorizontalCollectionViewCell2()
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! MenuCollectionViewCell3
+                cell.components.label.text = "Snack"
+                cell.setUpHorizontalCollectionViewCell3()
                 return cell
             }
         }

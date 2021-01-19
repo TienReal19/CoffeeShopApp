@@ -1,19 +1,18 @@
 //
-//  MenuCollectionViewCell2.swift
+//  MenuCollectionViewCell3.swift
 //  CoffeeShop
 //
-//  Created by Valerian   on 11/01/2021.
+//  Created by Valerian   on 12/01/2021.
 //
 
 import UIKit
 
-class MenuCollectionViewCell2: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    
-    lazy var textArray2 = ["Coffee","Coffee","Coffee","Coffee","Coffee"]
-    lazy var textArray3 = ["   500.000 đ","   500.000 đ","   500.000 đ","   500.000 đ","   500.000 đ"]
+class MenuCollectionViewCell3: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//    lazy var textArray2 = ["Thức ăn","Thức ăn","Thức ăn","Thức ăn","Thức ăn"]
+//    lazy var textArray3 = ["   500.000 đ","   500.000 đ","   500.000 đ","   500.000 đ","   500.000 đ"]
     
     var components = ShippingViewConponents()
-    var collectionViewHeight: NSLayoutConstraint?
+    var heightUpdatedAnchor: NSLayoutConstraint?
 
     lazy var label1: UILabel = {
         let lb = UILabel()
@@ -21,16 +20,6 @@ class MenuCollectionViewCell2: UICollectionViewCell, UICollectionViewDelegate, U
         lb.textAlignment = .center
         lb.font = UIFont.systemFont(ofSize: 15)
         lb.textColor = .black
-        return lb
-    }()
-
-    lazy var labelText: UILabel = {
-        let lb = UILabel()
-        lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.textAlignment = .center
-        lb.font = UIFont.systemFont(ofSize: 15)
-        lb.textColor = .black
-        lb.backgroundColor = .systemTeal
         return lb
     }()
     
@@ -56,10 +45,8 @@ class MenuCollectionViewCell2: UICollectionViewCell, UICollectionViewDelegate, U
     lazy var content: UIView = {
         let view  = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .systemPink
         return view
     }()
-    
     func setUpcollectionViewCell() {
         self.contentView.addSubview(label1)
         self.backgroundColor = .systemOrange
@@ -73,14 +60,13 @@ class MenuCollectionViewCell2: UICollectionViewCell, UICollectionViewDelegate, U
         ])
     }
     
-    func setUpHorizontalCollectionViewCell2() {
+    func setUpHorizontalCollectionViewCell3() {
         
         self.contentView.addSubview(scrollView)
         self.backgroundColor = .white
         scrollView.addSubview(content)
         content.addSubview(components.label)
         content.addSubview(components.menuCollectionView)
-//        content.addSubview(labelText)
         
         NSLayoutConstraint.activate([
             
@@ -94,7 +80,8 @@ class MenuCollectionViewCell2: UICollectionViewCell, UICollectionViewDelegate, U
             content.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             content.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             content.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            content.heightAnchor.constraint(equalTo: scrollView.heightAnchor, constant: 320),
+            content.heightAnchor.constraint(equalTo: scrollView.heightAnchor, constant: 315),
+//            content.heightAnchor.constraint(equalTo: scrollView.heightAnchor, constant: 100),
             
             components.label.topAnchor.constraint(equalTo: content.topAnchor),
             components.label.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 10),
@@ -104,12 +91,12 @@ class MenuCollectionViewCell2: UICollectionViewCell, UICollectionViewDelegate, U
             components.menuCollectionView.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 10),
             components.menuCollectionView.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -10),
             components.menuCollectionView.bottomAnchor.constraint(equalTo: content.bottomAnchor),
-            
-//            labelText.topAnchor.constraint(equalTo: components.menuCollectionView.bottomAnchor, constant: 3),
-//            labelText.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 10),
-//            labelText.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -10),
-//            labelText.bottomAnchor.constraint(equalTo: content.bottomAnchor),
+//            components.menuCollectionView.heightAnchor.constraint(equalToConstant: components.menuCollectionView.collectionViewLayout.collectionViewContentSize.height),
         ])
+        
+//        self.heightUpdatedAnchor = components.menuCollectionView.heightAnchor.constraint(equalToConstant: components.menuCollectionView.collectionViewLayout.collectionViewContentSize.height)
+//        heightUpdatedAnchor?.isActive = true
+//        components.menuCollectionView.layoutIfNeeded()
         
         components.menuCollectionView.register(FoodCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         components.menuCollectionView.delegate = self
@@ -122,8 +109,8 @@ class MenuCollectionViewCell2: UICollectionViewCell, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FoodCollectionViewCell
-        cell.label1.text = "Coffee"
-        cell.label3.text = "  500.000 VND"
+        cell.label1.text = "Thức ăn"
+        cell.label3.text = "  100.000 VND"
         cell.label4.text = "Add"
         return cell
     }
@@ -136,4 +123,3 @@ class MenuCollectionViewCell2: UICollectionViewCell, UICollectionViewDelegate, U
         return 10
     }
 }
-
